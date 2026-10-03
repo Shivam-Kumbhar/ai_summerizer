@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Summarizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📰 News Summarizer</h1>
+            <p>Search news and get AI-powered summaries</p>
+        </header>
+
+        <section class="search-section">
+            <div class="search-box">
+                <input type="text" id="topicInput" placeholder="Enter topic (e.g., AI, climate, tech)..." autocomplete="off">
+                <button id="searchBtn" class="btn btn-primary">Search News</button>
+            </div>
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <span>Fetching articles...</span>
+            </div>
+        </section>
+
+        <section id="resultsSection" class="results-section hidden">
+            <h2>Articles Found <span id="articleCount">(0)</span></h2>
+            <div id="articlesList" class="articles-grid"></div>
+        </section>
+
+        <section id="summarySection" class="summary-section hidden">
+            <div class="summary-card">
+                <div class="summary-header">
+                    <div class="summary-title-group">
+                        <span id="summaryBadge" class="summary-badge">AI Summary</span>
+                        <h3 id="summaryTitle"></h3>
+                    </div>
+                    <button id="closeSummary" class="btn-close" title="Close modal">&times;</button>
+                </div>
+                <div class="summary-meta">
+                    <span id="summarySource"></span>
+                    <span id="summaryDate"></span>
+                </div>
+                <div id="summaryBody" class="summary-body">
+                    <div id="summaryContent" class="summary-content"></div>
+                </div>
+                <div class="summary-actions">
+                    <button id="copySummaryBtn" class="btn btn-secondary" style="display: none;">
+                        <span class="btn-icon">📋</span> Copy Summary
+                    </button>
+                    <a id="summaryLink" href="#" target="_blank" class="btn btn-primary">
+                        <span class="btn-icon">🔗</span> Read Full Article
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="errorSection" class="error-section hidden">
+            <div class="error-card">
+                <span class="error-icon">⚠️</span>
+                <p id="errorMessage"></p>
+                <button onclick="hideError()" class="btn btn-secondary">Dismiss</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
